@@ -1,0 +1,1033 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>PaisaPanel — Four-Panel Cross Check Before You Invest</title>
+    <link rel="icon" type="image/png" href="assets/paisa-panel-favicon.png" />
+    <link rel="apple-touch-icon" href="assets/paisa-panel-favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+
+    <!-- ═══════════════════════════ FULLSCREEN BLUE GOOGLE LOGIN ═══════════════════════════ -->
+    <div class="login-fullscreen-screen" id="loginFullscreenScreen" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+      <div class="login-bg-art">
+        <div class="blue-radial-orb orb-top"></div>
+        <div class="blue-radial-orb orb-bottom"></div>
+        <div class="login-grid-lines"></div>
+        <div class="floating-badge-3d badge-1">🛡️ SEBI PFUTP Guard</div>
+        <div class="floating-badge-3d badge-2">⚡ 4-Panel AI Check</div>
+        <div class="floating-badge-3d badge-3">📊 Real NSE/BSE Filings</div>
+      </div>
+
+      <div class="login-container-3d">
+        <div class="login-brand-hero">
+          <div class="login-brand-logo-wrap">
+            <img class="login-logo-img" src="assets/paisa-panel-logo-full.png" alt="Paisa Panel — Check to Protect" width="280" height="80" />
+          </div>
+          <h1 id="loginTitle">Smartest way to audit stock tips before you invest</h1>
+          <p class="login-sub">Put any WhatsApp, Telegram, or social media recommendation on trial with 4 independent expert engines.</p>
+        </div>
+
+        <div class="login-card-surface">
+          <!-- Professional Google Sign-In Button -->
+          <button type="button" class="google-signin-pro-btn" id="googleLoginBtn">
+            <svg class="google-g-icon" viewBox="0 0 24 24" width="22" height="22">
+              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+            </svg>
+            <span class="btn-text">Continue with Google</span>
+            <span class="pro-shine"></span>
+          </button>
+
+          <div class="login-divider-row">
+            <span>or sign in with email</span>
+          </div>
+
+          <form class="login-pro-form" id="proLoginForm">
+            <div class="pro-form-group">
+              <label for="proEmailInput">Email address</label>
+              <input type="email" id="proEmailInput" placeholder="investor@example.com" value="tanya.sharma@investor.in" autocomplete="email" required />
+            </div>
+            <div class="pro-form-group">
+              <div class="label-row">
+                <label for="proPasswordInput">Password</label>
+                <a href="#forgot" class="forgot-pwd-link" onclick="event.preventDefault(); showToast('Demo Mode: Click Continue to sign in.');">Forgot?</a>
+              </div>
+              <input type="password" id="proPasswordInput" placeholder="••••••••" value="paisa2026" autocomplete="current-password" required />
+            </div>
+            <button type="submit" class="login-submit-btn" id="proSubmitBtn">
+              <span>Sign in to <strong class="brand-name-bold" style="color: #ffffff !important;">PAISA PANEL</strong></span>
+              <span class="arrow-icon">↑</span>
+            </button>
+          </form>
+
+          <div class="guest-quick-row">
+            <button type="button" class="guest-skip-btn" id="guestQuickBtn">
+              <span>⚡ Explore Live Demo as Guest →</span>
+            </button>
+          </div>
+
+          <div class="login-card-footer">
+            <div class="security-item">
+              <span class="sec-icon">🔒</span>
+              <span>256-Bit SSL Encrypted</span>
+            </div>
+            <div class="security-dot">•</div>
+            <div class="security-item">
+              <span class="sec-icon">🛡️</span>
+              <span>SEBI PFUTP Framework</span>
+            </div>
+            <div class="security-dot">•</div>
+            <div class="security-item">
+              <span class="sec-icon">✓</span>
+              <span>100% Free Demo</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════ HEADER ═══════════════════════════════ -->
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Paisa Panel home">
+        <img class="brand-logo-img" src="assets/paisa-panel-logo-full.png" alt="Paisa Panel — Check to Protect" height="38" />
+      </a>
+      <div class="header-controls">
+        <!-- Ollama status hidden from UI but kept in DOM for JS -->
+        <div id="ollamaStatus" style="display:none"></div>
+        <select id="modelSelector" style="display:none"></select>
+      </div>
+      <nav aria-label="Primary navigation">
+        <button class="nav-link" id="dashboardNavBtn">📊 Dashboard</button>
+        <button class="nav-link" id="methodButton">How it works</button>
+        <button class="nav-link" id="signupNavBtn" style="display:none">Sign up</button>
+        <div class="user-avatar" id="userAvatar"></div>
+        <select class="language-select" id="languageSelect" aria-label="Choose Language" title="Select Language">
+          <option value="en">🌐 English</option>
+          <option value="hi">🇮🇳 हिंदी (Hindi)</option>
+          <option value="gu">🇮🇳 ગુજરાતી (Gujarati)</option>
+          <option value="mr">🇮🇳 मराठी (Marathi)</option>
+          <option value="ta">🇮🇳 தமிழ் (Tamil)</option>
+          <option value="te">🇮🇳 తెలుగు (Telugu)</option>
+          <option value="bn">🇮🇳 বাংলা (Bengali)</option>
+          <option value="kn">🇮🇳 ಕನ್ನಡ (Kannada)</option>
+        </select>
+      </nav>
+    </header>
+
+    <main id="top">
+
+      <!-- ═══════════════════════════ DASHBOARD VIEW ════════════════════════ -->
+      <section class="dashboard-view is-hidden" id="dashboardView">
+        <div class="dashboard-header">
+          <div>
+            <p class="section-overline"><span></span> Your history</p>
+            <h1>Claim Dashboard</h1>
+            <p class="dashboard-sub">Every tip you stress-tested, in one place.</p>
+          </div>
+          <button class="primary-button small" id="dashboardNewBtn" type="button">
+            <span>+ New claim</span>
+          </button>
+        </div>
+
+        <div class="dashboard-stats" id="dashboardStats">
+          <div class="dstat">
+            <strong id="dstatTotal">0</strong>
+            <span>Claims checked</span>
+          </div>
+          <div class="dstat">
+            <strong id="dstatAvg">--</strong>
+            <span>Avg trust score</span>
+          </div>
+          <div class="dstat danger">
+            <strong id="dstatHighRisk">0%</strong>
+            <span>High-risk tips</span>
+          </div>
+          <div class="dstat">
+            <strong id="dstatLast">--</strong>
+            <span>Last checked</span>
+          </div>
+        </div>
+
+        <div class="dashboard-table-wrap">
+          <table class="dashboard-table" id="dashboardTable">
+            <thead>
+              <tr>
+                <th>Case & Claim</th>
+                <th>Score</th>
+                <th>Verdict</th>
+                <th>Matches</th>
+                <th>Community</th>
+                <th>Patterns</th>
+                <th>Date</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="dashboardBody">
+              <tr class="dash-empty" id="dashEmpty">
+                <td colspan="8">
+                  <div class="dash-empty-state">
+                    <span>📋</span>
+                    <p>No claims checked yet.<br/>Analyse your first stock tip to see it here.</p>
+                    <button class="primary-button small" onclick="document.getElementById('dashboardNavBtn').click()">Start analysing →</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════ HERO / INTAKE ═══════════════════════════ -->
+      <section class="hero hero-indmoney" id="intakeView" aria-labelledby="heroTitle">
+        <!-- 1. Hero Brand Title & Bold Punchline (ABOVE GREETING) -->
+        <div class="hero-center-brand">
+          <div class="hero-logo-banner">
+            <img class="hero-logo-img" src="assets/paisa-panel-logo-full.png" alt="Paisa Panel — Check to Protect" width="340" height="98" />
+            <h1 class="sr-only" id="heroTitle">PAISA PANEL — Check to Protect</h1>
+          </div>
+          <h2 class="hero-punchline-bold">ONE VERDICT. FOUR PANEL CROSS CHECK BEFORE YOU INVEST.</h2>
+          <p class="hero-punchline-sub">
+            Four independent AI experts stress-test balance sheet numbers, SEBI anti-fraud rules, historical pump-and-dump cycles, and genuine growth catalysts.
+          </p>
+        </div>
+
+        <!-- 2. Interactive Investor Text Greeting (NO BOX - Pure High-Contrast Typography) -->
+        <div class="hero-interactive-greeting" role="region" aria-label="Personalized Greeting">
+          <div class="interactive-greeting-title">
+            <span class="greeting-salute-text" id="geminiGreeting" role="button" tabindex="0" title="Click to switch account or manage profile">Hi Tanya!</span>
+            <span class="greeting-action-text">Let's check your tip &amp; save money with <strong class="brand-name-bold">PAISA PANEL</strong></span>
+          </div>
+          <div class="greeting-micro-bar">
+            <span class="greeting-live-dot" aria-hidden="true"></span>
+            <span class="greeting-live-label">4-Panel AI Council Active &amp; Guarding Your Investments</span>
+            <button type="button" class="greeting-switch-hint" id="greetingSwitchBtn" title="Switch account">(Switch account)</button>
+          </div>
+        </div>
+
+        <!-- ══════════ CENTERED INTAKE WORKSPACE (MOVED HIGHER UP) ══════════ -->
+        <div class="centered-intake-container">
+          <section class="intake-card centered-3d" aria-labelledby="intakeTitle">
+            <div class="intake-card-3d-glow"></div>
+            <div class="card-kicker">
+              <span class="live-dot"></span> Claim Trial Room 
+              <span class="demo-badge">4-Lens Cross-Check</span>
+            </div>
+            <h2 id="intakeTitle">What stock tip are people giving you?</h2>
+            <p class="card-description">Paste the message or upload a screenshot. The council will audit the claims in seconds.</p>
+
+            <div class="source-picker" role="group" aria-label="Choose claim source">
+              <button class="source-option is-active" data-source="paste" type="button"><span class="source-icon">↳</span> Paste message</button>
+              <button class="source-option" data-source="upload" type="button" id="uploadSourceBtn">
+                <span class="source-icon">⇧</span>
+                <span id="uploadBtnLabel">Upload screenshot / OCR</span>
+                <span class="upload-spinner is-hidden" id="uploadSpinner">⏳</span>
+              </button>
+            </div>
+            <input class="sr-only" type="file" id="screenUpload" accept="image/png,image/jpeg,image/webp" />
+
+            <!-- ── MIC BUTTON ── -->
+            <div class="mic-row" id="micRow">
+              <button class="mic-btn" id="micBtn" type="button" title="Speak your stock tip" aria-label="Record voice input">
+                <span class="mic-icon" id="micIcon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="2" width="6" height="11" rx="3"/>
+                    <path d="M5 10a7 7 0 0014 0"/>
+                    <line x1="12" y1="21" x2="12" y2="17"/>
+                    <line x1="8" y1="21" x2="16" y2="21"/>
+                  </svg>
+                </span>
+                <span class="mic-label" id="micLabel">Speak your tip</span>
+                <span class="mic-rings" aria-hidden="true"><span></span><span></span><span></span></span>
+              </button>
+              <div class="mic-live-transcript is-hidden" id="micLiveTranscript"></div>
+              <select class="mic-lang-select" id="micLangSelect" title="Voice language" aria-label="Choose voice language">
+                <option value="en-IN">🎙 English (India)</option>
+                <option value="hi-IN">हिंदी</option>
+                <option value="gu-IN">ગુજરાતી</option>
+                <option value="mr-IN">मराठी</option>
+                <option value="ta-IN">தமிழ்</option>
+                <option value="te-IN">తెలుగు</option>
+                <option value="bn-IN">বাংলা</option>
+                <option value="kn-IN">ಕನ್ನಡ</option>
+              </select>
+            </div>
+
+            <label class="sr-only" for="claimInput">Stock tip to investigate</label>
+            <textarea id="claimInput" rows="5" spellcheck="false" placeholder="Paste any stock recommendation, WhatsApp forward, SMS, or Telegram tip here to audit..."></textarea>
+
+            <div class="input-footer">
+              <span><span class="shield-mini">✦</span> Encrypted &amp; 100% Private</span>
+              <span id="wordCount">0 words</span>
+            </div>
+
+            <button class="primary-button" id="analyzeButton" type="button">
+              <span>Convene <strong class="brand-name-bold">PAISA PANEL</strong> Council</span><b aria-hidden="true">→</b>
+            </button>
+            <p class="disclosure"><strong class="brand-name-bold">PAISA PANEL</strong> AI Stress-Test Engine · Illustrative Analysis · Not financial advice.</p>
+          </section>
+        </div>
+
+        <!-- ══════════ THE FOUR PANELS SHOWCASE ══════════ -->
+        <div class="four-panels-showcase" aria-label="The Four Cross-Checking Panels">
+          <div class="panels-section-header">
+            <span class="panels-kicker">CROSS-CHECK COUNCIL</span>
+            <h3 class="panels-heading">How <strong class="brand-name-bold">PAISA PANEL</strong> Protects Your Hard-Earned Money</h3>
+            <p class="panels-subheading">Before you risk your savings, 4 independent expert engines cross-check the tip from every angle.</p>
+          </div>
+          <div class="four-panels-grid">
+            <!-- Panel 1 -->
+            <div class="panel-preview-card" data-panel="fundamentalist">
+              <div class="panel-card-inner">
+                <div class="panel-badge-top">
+                  <span class="panel-icon">📊</span>
+                  <span class="panel-lens-tag">LENS 01</span>
+                </div>
+                <h3 class="panel-title-bold">THE FUNDAMENTALIST</h3>
+                <h4 class="panel-how-two-words">Real Profit Check</h4>
+                <p class="panel-explanation">
+                  Does this company make enough real profit to back up this price? We check the company's real balance sheets, bank loans, and actual cash flow filed on NSE and BSE to verify whether the target price is realistic or pure hot air.
+                </p>
+                <div class="panel-bottom-feature">
+                  <span class="feature-bullet">✓</span> Real Cash Flow &amp; Profit Audit
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel 2 -->
+            <div class="panel-preview-card" data-panel="regulator">
+              <div class="panel-card-inner">
+                <div class="panel-badge-top">
+                  <span class="panel-icon">🛡️</span>
+                  <span class="panel-lens-tag">LENS 02</span>
+                </div>
+                <h3 class="panel-title-bold">THE REGULATOR'S EYE</h3>
+                <h4 class="panel-how-two-words">SEBI License Check</h4>
+                <p class="panel-explanation">
+                  Is this person legally authorized to give investment advice? We check SEBI records to confirm if the tipster is licensed. Promising "guaranteed returns" or "100% sure-shot profit" is completely illegal under SEBI fraud rules.
+                </p>
+                <div class="panel-bottom-feature">
+                  <span class="feature-bullet">✓</span> SEBI License &amp; Fraud Warning Check
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel 3 -->
+            <div class="panel-preview-card" data-panel="historian">
+              <div class="panel-card-inner">
+                <div class="panel-badge-top">
+                  <span class="panel-icon">⏳</span>
+                  <span class="panel-lens-tag">LENS 03</span>
+                </div>
+                <h3 class="panel-title-bold">THE MARKET HISTORIAN</h3>
+                <h4 class="panel-how-two-words">Past Trap Warning</h4>
+                <p class="panel-explanation">
+                  What happened to normal families who followed similar tips in the past? We look at past stock movements with identical hype words. In most cases, once retail buyers rush in, operators dump their shares and ordinary investors lose money.
+                </p>
+                <div class="panel-bottom-feature">
+                  <span class="feature-bullet">✓</span> Real Crash History &amp; Dump Detection
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel 4 -->
+            <div class="panel-preview-card" data-panel="bull">
+              <div class="panel-card-inner">
+                <div class="panel-badge-top">
+                  <span class="panel-icon">🚀</span>
+                  <span class="panel-lens-tag">LENS 04</span>
+                </div>
+                <h3 class="panel-title-bold">THE BULL'S ADVOCATE</h3>
+                <h4 class="panel-how-two-words">Honest Growth Check</h4>
+                <p class="panel-explanation">
+                  Could there be an honest business reason for this stock to grow? We check for real government policies, factory expansions, or rising customer demand—separating genuine business progress from fake social media hype.
+                </p>
+                <div class="panel-bottom-feature">
+                  <span class="feature-bullet">✓</span> Genuine Business Growth Check
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════ ANALYSIS VIEW ════════════════════════════ -->
+      <section class="analysis-view is-hidden" id="analysisView" aria-live="polite">
+        <div class="analysis-topbar">
+          <button class="back-button" id="resetButton" type="button">← New claim</button>
+          <div class="topbar-score-wrap">
+            <span class="analysis-label">Case <span id="caseNumber">PP-0142</span></span>
+          </div>
+          <select class="language-select compact" id="languageSelectAnalysis" aria-label="Choose Language" title="Select Language">
+            <option value="en">🌐 English</option>
+            <option value="hi">🇮🇳 हिंदी (Hindi)</option>
+            <option value="gu">🇮🇳 ગુજરાતી (Gujarati)</option>
+            <option value="mr">🇮🇳 मराठी (Marathi)</option>
+            <option value="ta">🇮🇳 தமிழ் (Tamil)</option>
+            <option value="te">🇮🇳 తెలుగు (Telugu)</option>
+            <option value="bn">🇮🇳 বাংলা (Bengali)</option>
+            <option value="kn">🇮🇳 ಕನ್ನಡ (Kannada)</option>
+          </select>
+        </div>
+
+        <div class="analysis-header">
+          <div>
+            <p class="eyebrow"><span></span> The council is in session</p>
+            <h1 id="caseTitle"><span class="claim-prefix">A claim of</span> <em>Nexora Textiles</em></h1>
+          </div>
+          <div class="session-status" id="sessionStatus"><span class="pulse"></span> Preparing evidence</div>
+        </div>
+
+        <!-- Claim strip -->
+        <section class="claim-strip" aria-label="Extracted claim">
+          <div class="claim-quote"><span class="quote-mark">&ldquo;</span><p id="claimQuote">NEXORA TEXTILES is going to ₹1,250 in 45 days. Guaranteed 5X return.</p></div>
+        </section>
+
+        <!-- ─── CLAIM PROVENANCE & DECOMPOSED SUB-CLAIMS (5-ENTITY SEPARATION) ─── -->
+        <section class="claim-audit-breakdown is-hidden" id="claimAuditBreakdown" aria-label="Claim decomposition and provenance">
+          <!-- Strict 5-Entity Separation Grid -->
+          <div class="provenance-grid" id="provenanceGrid">
+            <div class="provenance-pill">
+              <span class="prov-tag prov-claim">CLAIM</span>
+              <strong id="provClaimVal">Evaluating statement...</strong>
+              <small class="prov-desc">Exact statement being made</small>
+            </div>
+            <div class="provenance-pill">
+              <span class="prov-tag prov-source">SOURCE</span>
+              <strong id="provSourceVal">Telegram Channel (Unregistered Advisory)</strong>
+              <small class="prov-desc">Origin / publisher of recommendation</small>
+            </div>
+            <div class="provenance-pill">
+              <span class="prov-tag prov-sec">SECURITY</span>
+              <strong id="provSecurityVal">Darshan Orna Limited (BSE: 539884)</strong>
+              <small class="prov-desc">Subject listed instrument (NOT adviser)</small>
+            </div>
+            <div class="provenance-pill">
+              <span class="prov-tag prov-reg">REGULATORY STATUS</span>
+              <strong id="provRegVal">Unregistered Advisory</strong>
+              <small class="prov-desc">SEBI registration status of SOURCE</small>
+            </div>
+            <div class="provenance-pill layer-5th">
+              <span class="prov-tag prov-ev">KEY EVIDENCE</span>
+              <strong id="provEvVal">SEBI Adjudication Order (July 30, 2025)</strong>
+              <small class="prov-desc">Primary factual verification record</small>
+            </div>
+          </div>
+
+          <!-- Claim-by-Claim Verification Table -->
+          <div class="subclaims-block" id="subclaimsBlock">
+            <div class="subclaims-head">
+              <div class="subclaims-title">
+                <span class="subclaims-icon">❖</span>
+                <h3>Claim-by-Claim Verification Table</h3>
+              </div>
+              <span class="subclaims-badge" id="subclaimsCountBadge">Atomic Verification</span>
+            </div>
+            <div class="subclaims-table-wrap">
+              <table class="subclaims-table" id="subclaimsTable">
+                <thead>
+                  <tr>
+                    <th style="width: 28%;">Claim</th>
+                    <th style="width: 18%;">Status</th>
+                    <th style="width: 34%;">Evidence</th>
+                    <th style="width: 20%;">Source</th>
+                  </tr>
+                </thead>
+                <tbody id="subclaimsTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ─── STOCK CHART SECTION ─── -->
+        <section class="stock-chart-section" id="stockChartSection" aria-label="Live stock chart">
+          <div class="stock-chart-header">
+            <div class="stock-meta">
+              <span class="stock-symbol-pill" id="stockSymbolPill">Loading...</span>
+              <div class="stock-price-info">
+                <span class="stock-current-price" id="stockCurrentPrice">--</span>
+                <span class="stock-change-badge" id="stockChangeBadge">--</span>
+              </div>
+            </div>
+            <span class="stock-chart-label">7-day price</span>
+          </div>
+          <div class="stock-chart-wrap">
+            <canvas id="stockChartCanvas" width="800" height="160"></canvas>
+            <div class="stock-chart-loading" id="stockChartLoading">
+              <span class="chart-shimmer"></span>
+            </div>
+          </div>
+          <p class="stock-data-note">Data: Yahoo Finance · Not financial advice · 15-min delay may apply</p>
+        </section>
+
+        <!-- ─── COUNCIL SECTION ─── -->
+        <section class="council-section" aria-labelledby="councilTitle">
+          <div class="section-heading">
+            <div>
+              <p class="section-overline">Independent investigations</p>
+              <h2 id="councilTitle">Four voices. No shared script.</h2>
+            </div>
+            <div class="reveal-controls">
+              <span id="revealProgress">0 / 4 heard</span>
+              <button class="outline-button" id="revealButton" type="button">Deliberating <span>●</span></button>
+            </div>
+          </div>
+
+          <!-- Auto-reveal timer bar -->
+          <div class="auto-reveal-bar is-hidden" id="autoRevealBar">
+            <div class="arb-inner">
+              <span class="arb-label" id="autoRevealLabel">Next panel reveals in</span>
+              <div class="arb-track"><div class="arb-fill" id="autoRevealFill"></div></div>
+              <span class="arb-count" id="autoRevealCount">5</span>
+            </div>
+          </div>
+
+          <div class="council-grid" id="councilGrid">
+            <!-- Fundamentalist -> The Claim Analyst -->
+            <article class="persona-card is-pending" data-persona="fundamentalist">
+              <div class="card-topline"><span class="persona-number">01</span><span class="card-state">Awaiting evidence</span></div>
+              <div class="card-voice-btn" title="Listen to this panel" aria-label="Read aloud">🔊</div>
+              <div class="persona-icon fundamentalist-icon" aria-hidden="true">▰</div>
+              <p class="persona-role">The Claim Analyst</p>
+              <h3>What is being promised &amp; claimed?</h3>
+              <p class="persona-summary">Checking promised profits, target prices, and whether the numbers make sense.</p>
+              <div class="evidence-row"><span>◆</span><span>Evidence incoming</span></div>
+              <div class="investigation-layer" id="invLayer_fundamentalist"></div>
+            </article>
+
+            <!-- Regulator -> The Regulator's Eye -->
+            <article class="persona-card is-pending" data-persona="regulator">
+              <div class="card-topline"><span class="persona-number">02</span><span class="card-state">Awaiting evidence</span></div>
+              <div class="card-voice-btn" title="Listen to this panel" aria-label="Read aloud">🔊</div>
+              <div class="persona-icon regulator-icon" aria-hidden="true">◉</div>
+              <p class="persona-role">The Regulator's Eye</p>
+              <h3>What do official regulatory records establish?</h3>
+              <p class="persona-summary">Checking SEBI records, past fraud orders, and official advisor licenses.</p>
+              <div class="evidence-row"><span>◆</span><span>Evidence incoming</span></div>
+              <div class="investigation-layer" id="invLayer_regulator"></div>
+            </article>
+
+            <!-- Historian -> The Market Historian -->
+            <article class="persona-card is-pending" data-persona="historian">
+              <div class="card-topline"><span class="persona-number">03</span><span class="card-state">Awaiting evidence</span></div>
+              <div class="card-voice-btn" title="Listen to this panel" aria-label="Read aloud">🔊</div>
+              <div class="persona-icon historian-icon" aria-hidden="true">⌁</div>
+              <p class="persona-role">The Market Historian</p>
+              <h3>What happened to this security?</h3>
+              <p class="persona-summary">Checking real market prices to see what actually happened to this stock.</p>
+              <div class="evidence-row"><span>◆</span><span>Evidence incoming</span></div>
+              <div class="investigation-layer" id="invLayer_historian"></div>
+            </article>
+
+            <!-- Bull -> The Source Auditor -->
+            <article class="persona-card is-pending" data-persona="bull">
+              <div class="card-topline"><span class="persona-number">04</span><span class="card-state">Awaiting evidence</span></div>
+              <div class="card-voice-btn" title="Listen to this panel" aria-label="Read aloud">🔊</div>
+              <div class="persona-icon bull-icon" aria-hidden="true">↗</div>
+              <p class="persona-role">The Source Auditor</p>
+              <h3>Who made the recommendation &amp; are they verified?</h3>
+              <p class="persona-summary">Checking who sent this tip and whether they are an authorized financial expert.</p>
+              <div class="evidence-row"><span>◆</span><span>Evidence incoming</span></div>
+              <div class="investigation-layer" id="invLayer_bull"></div>
+            </article>
+          </div>
+        </section>
+
+        <!-- ─── VERDICT SECTION ─── -->
+        <section class="verdict-section is-hidden" id="verdictSection" aria-labelledby="verdictTitle">
+          <div class="verdict-intro">
+            <p class="section-overline">The record is complete</p>
+            <h2 id="verdictTitle">The council's verdict</h2>
+            <p>It is not a prediction. It is a transparent read on how much this claim deserves your trust.</p>
+          </div>
+          <div class="verdict-card" id="verdictCard">
+            <div class="score-wrap">
+              <div class="score-ring score-ring-loading" id="scoreRingEl" title="Click to view quantitative score breakdown"><div><strong id="trustScore">--</strong><span>Trust score</span></div></div>
+              <p class="score-caption" id="scoreCaption">Analysing<br/>claim...</p>
+              <button type="button" class="score-interactive-badge" id="scoreInteractiveBadge" title="Click to view mathematical breakdown"><span>⚡</span><span>Explore Breakdown</span></button>
+            </div>
+            <div class="verdict-copy">
+              <p class="verdict-label" id="verdictLabel">Analysing...</p>
+              <h3 id="verdictHeading">Waiting for council deliberations...</h3>
+              <p id="verdictBody">The four experts are reviewing your claim. This takes 15–45 seconds depending on model speed.</p>
+              <div class="flag-columns">
+                <div><span class="flag-title red">Red flags</span><ul id="redFlags"><li>Analysing...</li></ul></div>
+                <div><span class="flag-title green">What held up</span><ul id="greenFlags"><li>Analysing...</li></ul></div>
+              </div>
+              <div class="score-breakdown-card" id="scoreBreakdownCard">
+                <div class="breakdown-header">
+                  <div>
+                    <span class="breakdown-tag">Exact Mathematical Model</span>
+                    <h4>Quantitative Score Breakdown</h4>
+                  </div>
+                  <span class="breakdown-total" id="breakdownTotal">-- / 100</span>
+                </div>
+                <div class="breakdown-list" id="breakdownList"></div>
+              </div>
+
+              <!-- ─── FEATURE 6: TRACEABLE VERDICT EXPLANATION ─── -->
+              <div class="verdict-traceability" id="verdictTraceability">
+                <div class="trace-header">
+                  <span class="trace-tag">Transparent Deliberation</span>
+                  <h4>Why did Paisa Panel reach this conclusion?</h4>
+                  <div class="trace-check-grid">
+                    <span class="trace-check-item">✓ Historical claims checked</span>
+                    <span class="trace-check-item">✓ Sources analyzed</span>
+                    <span class="trace-check-item">✓ Similar patterns detected</span>
+                    <span class="trace-check-item">✓ Community reports considered</span>
+                  </div>
+                </div>
+
+                <div class="evidence-accordion" id="evidenceAccordion">
+                  <details class="evidence-tab" id="evTabHistorical">
+                    <summary class="evidence-summary">
+                      <span>🕒 Historical Evidence</span>
+                      <span class="summary-badge" id="evHistBadge">Matched</span>
+                    </summary>
+                    <div class="evidence-content" id="evHistContent">
+                      <p>Evaluating historical distribution cycles and base rates for matching price targets.</p>
+                    </div>
+                  </details>
+
+                  <details class="evidence-tab" id="evTabSource">
+                    <summary class="evidence-summary">
+                      <span>📚 Regulatory & Filing Evidence</span>
+                      <span class="summary-badge">Verified Disclosures</span>
+                    </summary>
+                    <div class="evidence-content" id="evSourceContent">
+                      <p>• Cross-checked against SEBI (Prohibition of Fraudulent and Unfair Trade Practices) guidelines.</p>
+                      <p>• Verified corporate announcements and quarterly filing disclosures on NSE/BSE.</p>
+                    </div>
+                  </details>
+
+                  <details class="evidence-tab" id="evTabCommunity">
+                    <summary class="evidence-summary">
+                      <span>👥 Community Evidence</span>
+                      <span class="summary-badge" id="evCommBadge">Active Attention</span>
+                    </summary>
+                    <div class="evidence-content" id="evCommContent">
+                      <p>Crowdsourced reporting trends across retail messaging groups and social platforms.</p>
+                    </div>
+                  </details>
+
+                  <details class="evidence-tab" id="evTabPattern">
+                    <summary class="evidence-summary">
+                      <span>⚡ Detected Patterns</span>
+                      <span class="summary-badge" id="evPatBadge">Tactics Identified</span>
+                    </summary>
+                    <div class="evidence-content" id="evPatContent">
+                      <p>Linguistic markers, guaranteed promises, and urgency tactics identified in this claim.</p>
+                    </div>
+                  </details>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Share & actions row -->
+          <div class="next-actions">
+            <button class="secondary-button" id="explainButton" type="button">See how we reached this</button>
+            <button class="secondary-button share-card-btn" id="shareCardBtn" type="button">
+              <span class="share-icon">📤</span> Share Score Card
+            </button>
+            <button class="primary-button small" id="shareButton" type="button"><span>Copy verdict</span><b aria-hidden="true">↗</b></button>
+          </div>
+        </section>
+
+        <!-- ══════════════ FEATURE 4: PATTERN DETECTION ══════════════ -->
+        <section class="investigation-subcard pattern-detection-section is-hidden" id="patternDetectionSection">
+          <div class="isub-header">
+            <div class="isub-title-wrap">
+              <span class="isub-badge">⚡ Live Signal Intelligence</span>
+              <h2>Pattern Detection</h2>
+              <p class="isub-sub">Grouping real-time manipulation signals, statutory red flags, and linguistic tactics</p>
+            </div>
+          </div>
+          <p class="isub-desc">Real tactics and statutory indicators detected directly from this claim:</p>
+
+          <div class="patterns-grid" id="patternsGrid">
+            <!-- Dynamically populated PatternCards with real data -->
+          </div>
+        </section>
+
+        <!-- ══════════════ FEATURE 2: COMMUNITY COURT ══════════════ -->
+        <section class="investigation-subcard community-court-section is-hidden" id="communityCourtSection">
+          <div class="isub-header">
+            <div class="isub-title-wrap">
+              <span class="isub-badge">⚖️ Collective Retail Protection</span>
+              <h2>Community Court</h2>
+              <p class="isub-sub">Real-time crowd intelligence against predatory tip distribution</p>
+            </div>
+          </div>
+          <p class="isub-desc">When dubious stock tips circulate on WhatsApp or Telegram, community reports create an early warning system for everyone.</p>
+
+          <div class="court-interactive-card">
+            <div class="court-prompt-box">
+              <div class="court-prompt-left">
+                <span class="court-avatar-lead">🛡️</span>
+                <div>
+                  <strong>Did you receive this tip or recommendation too?</strong>
+                  <small>Seen on WhatsApp groups, Telegram channels, Instagram Reels, YouTube, or SMS?</small>
+                </div>
+              </div>
+              <button type="button" class="court-trigger-btn" id="courtTriggerBtn">
+                <span>+ Report Tip to Community Court</span>
+              </button>
+            </div>
+
+            <div class="court-stats-bar">
+              <div class="court-count-display">
+                <span class="court-count-lbl">Verified Community Reports</span>
+                <strong class="court-count-num" id="courtReportCount">142 reports</strong>
+              </div>
+              <div class="court-status-cluster">
+                <span class="court-level-pill danger" id="courtLevelPill">High Community Alert</span>
+              </div>
+              <div class="court-avatar-cluster">
+                <div class="avatar-stack" id="courtAvatarStack">
+                  <span class="c-av av-1" title="Investor from Mumbai">👨🏽</span>
+                  <span class="c-av av-2" title="Investor from Delhi">👩🏻</span>
+                  <span class="c-av av-3" title="Investor from Bengaluru">🧑🏾</span>
+                  <span class="c-av av-4" title="Investor from Ahmedabad">👨🏻</span>
+                  <span class="c-av av-5" title="Investor from Pune">👩🏽</span>
+                </div>
+                <span class="avatar-count-lbl" id="courtOthersCount">+ 138 other retail investors</span>
+              </div>
+            </div>
+
+            <div class="court-breakdown-row">
+              <div class="court-breakdown-col">
+                <span class="cb-label">Circulating Platforms</span>
+                <div class="cb-bars">
+                  <div class="cb-bar-item"><span class="cb-name">WhatsApp</span><div class="cb-track"><div class="cb-fill" style="width: 62%;"></div></div><span class="cb-pct">62%</span></div>
+                  <div class="cb-bar-item"><span class="cb-name">Telegram</span><div class="cb-track"><div class="cb-fill" style="width: 26%;"></div></div><span class="cb-pct">26%</span></div>
+                  <div class="cb-bar-item"><span class="cb-name">YouTube / IG</span><div class="cb-track"><div class="cb-fill" style="width: 12%;"></div></div><span class="cb-pct">12%</span></div>
+                </div>
+              </div>
+              <div class="court-consensus-col">
+                <span class="cb-label">Retail Consensus</span>
+                <div class="consensus-badge-wrap">
+                  <strong class="consensus-pct">91%</strong>
+                  <span class="consensus-text">voted suspicious / potential pump trap</span>
+                </div>
+              </div>
+            </div>
+
+            <p class="court-disclaimer">
+              Crowdsourced reports track circulating scam volume. Reporting protects fellow investors before retail exit liquidity traps can close.
+            </p>
+          </div>
+        </section>
+
+        <!-- ══════════════ FEATURE 3: SMARTER INSIGHTS / LEARNING LOOP ══════════════ -->
+        <section class="investigation-subcard smarter-insights-section is-hidden" id="smarterInsightsSection">
+          <div class="isub-header">
+            <div class="isub-title-wrap">
+              <span class="isub-badge">🧠 Continuous Learning</span>
+              <h2>Smarter Insights</h2>
+              <p class="isub-sub">The system gets smarter with every claim checked.</p>
+            </div>
+          </div>
+
+          <div class="learning-loop-bar">
+            <div class="loop-step"><span>1</span><p>More claims checked</p></div>
+            <span class="loop-arrow">→</span>
+            <div class="loop-step"><span>2</span><p>More patterns + reports</p></div>
+            <span class="loop-arrow">→</span>
+            <div class="loop-step"><span>3</span><p>Better context for investigation</p></div>
+            <span class="loop-arrow">→</span>
+            <div class="loop-step"><span>4</span><p>More useful verdict explanations</p></div>
+            <span class="loop-arrow">→</span>
+            <div class="loop-step highlight"><span>5</span><p>Safer investing community</p></div>
+          </div>
+
+          <div class="insights-metrics-grid">
+            <div class="insight-metric-card">
+              <strong class="im-num" id="statClaimsChecked">1,248</strong>
+              <span class="im-label">Claims Checked</span>
+            </div>
+            <div class="insight-metric-card">
+              <strong class="im-num" id="statHistoricalMatches">327</strong>
+              <span class="im-label">Historical Matches</span>
+            </div>
+            <div class="insight-metric-card">
+              <strong class="im-num" id="statCommunityReports">142</strong>
+              <span class="im-label">Community Reports</span>
+            </div>
+            <div class="insight-metric-card">
+              <strong class="im-num" id="statPatternsDetected">86</strong>
+              <span class="im-label">Patterns Detected</span>
+            </div>
+          </div>
+        </section>
+
+        <footer class="demo-footer">Paisa Panel · Fictional example only · Not financial advice</footer>
+      </section>
+    </main>
+
+    <!-- ═══════════════════════ METHOD DIALOG ════════════════════════ -->
+    <dialog class="method-dialog" id="methodDialog" aria-labelledby="methodTitle">
+      <button class="close-dialog" id="closeDialog" aria-label="Close">×</button>
+      <p class="eyebrow"><span></span> Method, made visible</p>
+      <h2 id="methodTitle">A verdict you can interrogate.</h2>
+      <ol>
+        <li><b>Extract</b><span>Turn raw tips into checkable statements.</span></li>
+        <li><b>Investigate</b><span>Give each expert a separate mandate and evidence trail.</span></li>
+        <li><b>Surface disagreement</b><span>Show every conclusion before synthesising it.</span></li>
+        <li><b>Explain plainly</b><span>Return specific red and green flags in the reader's language.</span></li>
+      </ol>
+      <p class="dialog-note">This prototype uses illustrative evidence rather than live market or regulatory data.</p>
+    </dialog>
+
+    <!-- ═══════════════════════ SHARE MODAL ═════════════════════════ -->
+    <dialog class="share-dialog" id="shareDialog" aria-labelledby="shareDialogTitle">
+      <button class="close-dialog" id="closeShareDialog" aria-label="Close">×</button>
+      <div class="share-dialog-inner">
+        <p class="eyebrow"><span></span> Share your verdict</p>
+        <h2 id="shareDialogTitle">Save &amp; share the score card</h2>
+        <p class="share-subtitle">Your trust score card is ready. Download it and share on WhatsApp, Instagram, or anywhere you like.</p>
+        <div class="share-canvas-wrap">
+          <canvas id="shareCanvas" width="1080" height="1080"></canvas>
+        </div>
+        <div class="share-actions-grid">
+          <button class="share-platform-btn whatsapp" id="shareWhatsApp">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </button>
+          <button class="share-platform-btn instagram" id="shareInstagram">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            Instagram
+          </button>
+          <button class="share-platform-btn copy-card" id="shareCopyCard">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            Copy Card
+          </button>
+          <button class="share-platform-btn download" id="shareDownload">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            Download
+          </button>
+          <button class="share-platform-btn native-share" id="shareNative">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            More…
+          </button>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- ═══════════════════════ SIGN UP DIALOG ═══════════════════════ -->
+    <dialog class="signup-dialog" id="signupDialog" aria-labelledby="signupTitle">
+      <button class="close-dialog" id="closeSignupDialog" aria-label="Close" style="display:none">×</button>
+      <div class="signup-layout">
+        <!-- Left panel -->
+        <div class="signup-left">
+          <div class="signup-brand">
+            <img class="signup-logo-img" src="assets/paisa-panel-logo-full.png" alt="Paisa Panel — Check to Protect" width="180" height="52" />
+          </div>
+          <h2 id="signupTitle">Make smarter<br/>decisions.</h2>
+          <p>Join thousands of retail investors who stress-test every tip before they act.</p>
+          <ul class="signup-benefits">
+            <li><span class="benefit-icon">🛡️</span> Full council analysis on every claim</li>
+            <li><span class="benefit-icon">📊</span> Exact mathematical trust score</li>
+            <li><span class="benefit-icon">🔊</span> Audio narration in 8 Indian languages</li>
+            <li><span class="benefit-icon">📤</span> Shareable score cards for WhatsApp &amp; Instagram</li>
+          </ul>
+          <p class="signup-disclaimer">Free forever. No credit card required.</p>
+        </div>
+        <!-- Right panel — form -->
+        <div class="signup-right">
+          <div class="signup-tabs">
+            <button class="signup-tab is-active" data-tab="register">Create account</button>
+            <button class="signup-tab" data-tab="login">Sign in</button>
+          </div>
+
+          <!-- Register form -->
+          <form class="signup-form" id="registerForm" novalidate>
+            <div class="form-group">
+              <label for="regName">Full name</label>
+              <input type="text" id="regName" placeholder="Priya Sharma" autocomplete="name" />
+            </div>
+            <div class="form-group">
+              <label for="regEmail">Email address</label>
+              <input type="email" id="regEmail" placeholder="priya@example.com" autocomplete="email" />
+            </div>
+            <div class="form-group">
+              <label for="regPhone">Phone (optional)</label>
+              <input type="tel" id="regPhone" placeholder="+91 98765 43210" autocomplete="tel" />
+            </div>
+            <div class="form-group">
+              <label for="regPassword">Password</label>
+              <div class="password-wrap">
+                <input type="password" id="regPassword" placeholder="Min. 8 characters" autocomplete="new-password" />
+                <button type="button" class="toggle-password" aria-label="Show password">👁</button>
+              </div>
+            </div>
+            <div class="form-check">
+              <input type="checkbox" id="regAgree" />
+              <label for="regAgree">I agree to the <a href="#">Terms</a> and <a href="#">Privacy Policy</a></label>
+            </div>
+            <button type="submit" class="primary-button signup-submit">
+              <span>Create free account</span><b>→</b>
+            </button>
+            <button type="button" class="skip-link" id="skipForNow">Skip for now — explore demo</button>
+            <div class="signup-divider"><span>or continue with</span></div>
+            <div class="social-signup-row">
+              <button type="button" class="social-btn google-btn">
+                <svg viewBox="0 0 24 24" width="18" height="18"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                Google
+              </button>
+              <button type="button" class="social-btn phone-btn">📱 Phone OTP</button>
+            </div>
+          </form>
+
+          <!-- Login form -->
+          <form class="signup-form is-hidden" id="loginForm" novalidate>
+            <div class="form-group">
+              <label for="loginEmail">Email address</label>
+              <input type="email" id="loginEmail" placeholder="priya@example.com" autocomplete="email" />
+            </div>
+            <div class="form-group">
+              <label for="loginPassword">Password</label>
+              <div class="password-wrap">
+                <input type="password" id="loginPassword" placeholder="Your password" autocomplete="current-password" />
+                <button type="button" class="toggle-password" aria-label="Show password">👁</button>
+              </div>
+            </div>
+            <a href="#" class="forgot-link">Forgot password?</a>
+            <button type="submit" class="primary-button signup-submit">
+              <span>Sign in</span><b>→</b>
+            </button>
+            <button type="button" class="skip-link" id="skipForNowLogin">Skip for now — explore demo</button>
+            <div class="signup-divider"><span>or continue with</span></div>
+            <div class="social-signup-row">
+              <button type="button" class="social-btn google-btn">
+                <svg viewBox="0 0 24 24" width="18" height="18"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                Google
+              </button>
+              <button type="button" class="social-btn phone-btn">📱 Phone OTP</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- Voice reading indicator -->
+    <div class="voice-indicator is-hidden" id="voiceIndicator">
+      <div class="voice-waves">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <span id="voiceLabel">Reading panel...</span>
+      <button id="voiceStop" aria-label="Stop narration">■ Stop</button>
+    </div>
+
+    <!-- Community Court Confirmation Dialog -->
+    <dialog class="confirm-dialog" id="courtConfirmDialog" aria-labelledby="confirmDialogTitle">
+      <div class="confirm-card-box">
+        <h3 id="confirmDialogTitle">Confirm Community Report</h3>
+        <p>Did you receive this exact financial tip on WhatsApp, Telegram, SMS, or social media?</p>
+        <p class="confirm-sub">Your report helps build a collective protection map to warn other retail investors early.</p>
+        <div class="confirm-actions-row">
+          <button type="button" class="secondary-button" id="courtConfirmCancel">Cancel</button>
+          <button type="button" class="primary-button small" id="courtConfirmYes">Yes, report it</button>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- ═══════════════════════════════ FULL-SCREEN INVESTIGATION DOSSIER OVERLAY ═══════════════════════════════ -->
+    <div class="fullscreen-dossier-overlay is-hidden" id="fullscreenDossierOverlay" aria-modal="true" role="dialog" aria-labelledby="fsPersonaHeading">
+      <div class="fs-dossier-backdrop" id="fsDossierBackdrop"></div>
+      <div class="fs-dossier-modal" id="fsDossierModal">
+        <div class="fs-dossier-header">
+          <div class="fs-dossier-header-left">
+            <span class="fs-persona-badge" id="fsPersonaBadge">INVESTIGATION DOSSIER</span>
+            <span class="fs-live-badge" id="fsLiveBadge">🟢 Live Exchange Feed & Audited Data</span>
+          </div>
+          <div class="fs-dossier-header-right">
+            <span class="fs-confidence" id="fsConfidence">Confidence: High</span>
+            <button type="button" class="fs-close-btn" id="fsCloseBtn" aria-label="Close full-screen dossier">✕ Close <kbd>Esc</kbd></button>
+          </div>
+        </div>
+
+        <div class="fs-dossier-title-bar">
+          <div class="fs-persona-icon" id="fsPersonaIcon">▰</div>
+          <div class="fs-title-text">
+            <p class="fs-persona-role" id="fsPersonaRole">The Fundamentalist</p>
+            <h2 class="fs-persona-heading" id="fsPersonaHeading">Is the business sound?</h2>
+          </div>
+          <div class="fs-fullscreen-tag">
+            <span>⛶ FULL-SCREEN DOSSIER</span>
+          </div>
+        </div>
+
+        <div class="fs-dossier-grid">
+          <!-- Left Column: Core Finding, Dynamic Content (Metrics/Reg/Precedent/Bull), Evidence Trio -->
+          <div class="fs-dossier-main">
+            <div class="fs-finding-card">
+              <span class="fs-section-tag">Investigation Finding</span>
+              <p class="fs-finding-text" id="fsFindingText"></p>
+            </div>
+
+            <div class="fs-dynamic-content" id="fsDynamicContent"></div>
+
+            <div class="fs-evidence-trio">
+              <div class="fs-trio-card fact">
+                <span class="fs-trio-tag">Fact (Direct Source Record)</span>
+                <p class="fs-trio-text" id="fsTrioFact"></p>
+              </div>
+              <div class="fs-trio-card interpretation">
+                <span class="fs-trio-tag">Interpretation (What This May Indicate)</span>
+                <p class="fs-trio-text" id="fsTrioInterp"></p>
+              </div>
+              <div class="fs-trio-card conclusion">
+                <span class="fs-trio-tag">Conclusion (Paisa Panel Assessment)</span>
+                <p class="fs-trio-text" id="fsTrioConcl"></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Official Source Card with real clickable link + Queries Trail -->
+          <div class="fs-dossier-sidebar">
+            <div class="fs-source-card">
+              <div class="fs-source-hdr">
+                <span class="fs-source-tag">Official Source</span>
+                <span class="fs-source-type" id="fsSourceType">Tier 1 Exchange Disclosures</span>
+              </div>
+              <h3 class="fs-source-title" id="fsSourceTitle">Audited Financial Results & Balance Sheet</h3>
+              <div class="fs-source-meta" id="fsSourceMeta">NSE / BSE Official Filings</div>
+              <div class="fs-source-detail">
+                <strong>Fact Used:</strong>
+                <p id="fsSourceFact"></p>
+              </div>
+              <div class="fs-source-detail">
+                <strong>Why It Matters:</strong>
+                <p id="fsSourceWhy"></p>
+              </div>
+              <a href="#" target="_blank" rel="noopener noreferrer" class="fs-source-btn" id="fsSourceBtn">
+                Open official source ↗
+              </a>
+            </div>
+
+            <div class="fs-trail-card">
+              <div class="fs-trail-hdr">
+                <span>Targeted Queries & Evidence Trail</span>
+              </div>
+              <div class="fs-trail-list" id="fsTrailList"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast" id="toast" role="status">Verdict copied to clipboard</div>
+    <script src="services.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
