@@ -421,6 +421,209 @@ const TRANSLATION_PACKS = {
 };
 
 // ─── STARTUP ONBOARDING & AUTH ─────────────────────────────────
+// ─── STARTUP ONBOARDING & SUPABASE AUTH ─────────────────────────
+let supabaseClient = null;
+let supabaseConfig = {
+  url: localStorage.getItem("pp_supabase_url") || "",
+  key: localStorage.getItem("pp_supabase_key") || ""
+};
+let authMode = "signin"; // "signin" | "signup"
+
+function showAuthFeedback(msg, type = "error") {
+  const banner = document.getElementById("authFeedback");
+  if (!banner) return;
+  banner.textContent = msg;
+  banner.className = `auth-feedback-banner is-${type}`;
+  banner.classList.remove("is-hidden");
+}
+
+function clearAuthFeedback() {
+  const banner = document.getElementById("authFeedback");
+  if (banner) {
+    banner.textContent = "";
+    banner.className = "auth-feedback-banner is-hidden";
+  }
+}
+
+function setAuthMode(mode) {
+  authMode = mode;
+  clearAuthFeedback();
+  const tabSignIn = document.getElementById("tabSignIn");
+  const tabSignUp = document.getElementById("tabSignUp");
+  const nameGroup = document.getElementById("proNameGroup");
+  const submitText = document.getElementById("loginSubmitBtnText");
+  const forgotLink = document.getElementById("proForgotLink");
+  const dividerText = document.getElementById("loginDividerText");
+
+  if (mode === "signup") {
+    tabSignUp?.classList.add("is-active");
+    tabSignIn?.classList.remove("is-active");
+    nameGroup?.classList.remove("is-hidden");
+    if (forgotLink) forgotLink.style.display = "none";
+    if (submitText) submitText.innerHTML = `Create Account with <strong class="brand-name-bold" style="color: #ffffff !important;">PAISA PANEL</strong>`;
+    if (dividerText) dividerText.textContent = "or create account with email";
+  } else {
+    tabSignIn?.classList.add("is-active");
+    tabSignUp?.classList.remove("is-active");
+    nameGroup?.classList.add("is-hidden");
+    if (forgotLink) forgotLink.style.display = "";
+    if (submitText) submitText.innerHTML = `Sign in to <strong class="brand-name-bold" style="color: #ffffff !important;">PAISA PANEL</strong>`;
+    if (dividerText) dividerText.textContent = "or sign in with email";
+  }
+}
+
+async function initSupabaseAuth() {
+  // 1. Fetch backend env config if not stored in localStorage
+  if (!supabaseConfig.url || !supabaseConfig.key) {
+    try {
+      const res = await fetch("/api/auth/config");
+      if (res.ok) {
+        const data = await res.json();
+        if (data.supabaseUrl && data.supabaseAnonKey) {
+          supabaseConfig.url = data.supabaseUrl;
+          supabaseConfig.key = data.supabaseAnonKey;
+        }
+      }
+    } catch (e) {
+      console.warn("Could not fetch Supabase configuration from server:", e);
+    }
+  }
+
+  const badge = document.getElementById("supabaseStatusBadge");
+  const statusText = document.getElementById("sbStatusText");
+
+  // 2. Initialize client if credentials exist and Supabase JS is loaded
+  if (window.supabase && supabaseConfig.url && supabaseConfig.key) {
+    try {
+      supabaseClient = window.supabase.createClient(supabaseConfig.url, supabaseConfig.key);
+      if (badge) badge.className = "supabase-status-pill is-connected";
+      if (statusText) statusText.textContent = "Supabase Auth: Active";
+
+      // Check current session
+      const { data: { session } } = await supabaseClient.auth.getSession();
+      if (session && session.user) {
+        handleSupabaseUserSession(session.user);
+      }
+
+      // Listen to auth state changes (sign-in, sign-out, OAuth redirect)
+      supabaseClient.auth.onAuthStateChange((event, session) => {
+        if ((event === "SIGNED_IN" || event === "USER_UPDATED") && session?.user) {
+          handleSupabaseUserSession(session.user);
+        } else if (event === "SIGNED_OUT") {
+          localStorage.removeItem("pp_user");
+          if (els.userAvatar) els.userAvatar.style.display = "none";
+          const loginScreen = document.querySelector("#loginFullscreenScreen");
+          if (loginScreen) {
+            loginScreen.classList.remove("is-scrolled-up");
+          }
+        }
+      });
+      return true;
+    } catch (err) {
+      console.error("Supabase client init error:", err);
+      if (badge) badge.className = "supabase-status-pill is-error";
+      if (statusText) statusText.textContent = "Supabase: Config error";
+      return false;
+    }
+  } else {
+    // Unconfigured state: Fallback to Demo Mode
+    if (badge) badge.className = "supabase-status-pill";
+    if (statusText) statusText.textContent = "Supabase Auth (Demo Mode)";
+    return false;
+  }
+}
+
+function handleSupabaseUserSession(user) {
+  const meta = user.user_metadata || {};
+  const name = meta.full_name || meta.name || user.email?.split("@")[0] || "Supabase Investor";
+  const isOAuth = !!(user.app_metadata?.provider && user.app_metadata.provider !== "email");
+  saveUser(name, user.email, false, isOAuth);
+}
+
+function setupSupabaseConfigModal() {
+  const modal = document.getElementById("supabaseConfigModal");
+  const openBtn = document.getElementById("sbConfigBtn");
+  const closeBtn = document.getElementById("sbModalCloseBtn");
+  const urlInput = document.getElementById("sbUrlInput");
+  const keyInput = document.getElementById("sbKeyInput");
+  const testBtn = document.getElementById("sbTestConnBtn");
+  const saveBtn = document.getElementById("sbSaveConnBtn");
+  const resetBtn = document.getElementById("sbResetConnBtn");
+  const statusMsg = document.getElementById("sbConnStatusMsg");
+  const statusDot = document.getElementById("sbConnDot");
+
+  if (!modal) return;
+
+  openBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    if (urlInput) urlInput.value = supabaseConfig.url || "";
+    if (keyInput) keyInput.value = supabaseConfig.key || "";
+    if (statusMsg) statusMsg.textContent = supabaseClient ? "Connected to Supabase Project" : "Demo Mode (configure Project URL & Anon Key)";
+    if (statusDot) statusDot.className = supabaseClient ? "sb-conn-dot is-online" : "sb-conn-dot";
+    modal.showModal();
+  });
+
+  closeBtn?.addEventListener("click", () => modal.close());
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) modal.close();
+  });
+
+  testBtn?.addEventListener("click", async () => {
+    const url = urlInput?.value.trim();
+    const key = keyInput?.value.trim();
+    if (!url || !key) {
+      if (statusMsg) statusMsg.textContent = "Please enter both Project URL and Anon Key.";
+      if (statusDot) statusDot.className = "sb-conn-dot is-offline";
+      return;
+    }
+    if (statusMsg) statusMsg.textContent = "Verifying connection to Supabase...";
+    if (statusDot) statusDot.className = "sb-conn-dot";
+
+    try {
+      const testClient = window.supabase ? window.supabase.createClient(url, key) : null;
+      if (!testClient) throw new Error("Supabase library not loaded yet.");
+      const { error } = await testClient.auth.getSession();
+      if (error && error.status !== 400 && !error.message?.includes("refresh_token")) {
+        throw error;
+      }
+      if (statusMsg) statusMsg.textContent = "✓ Verified! Valid Supabase endpoint.";
+      if (statusDot) statusDot.className = "sb-conn-dot is-online";
+    } catch (err) {
+      if (statusMsg) statusMsg.textContent = `Error: ${err.message || "Failed to reach Supabase"}`;
+      if (statusDot) statusDot.className = "sb-conn-dot is-offline";
+    }
+  });
+
+  saveBtn?.addEventListener("click", async () => {
+    const url = urlInput?.value.trim() || "";
+    const key = keyInput?.value.trim() || "";
+    supabaseConfig.url = url;
+    supabaseConfig.key = key;
+    if (url && key) {
+      localStorage.setItem("pp_supabase_url", url);
+      localStorage.setItem("pp_supabase_key", key);
+    } else {
+      localStorage.removeItem("pp_supabase_url");
+      localStorage.removeItem("pp_supabase_key");
+    }
+    await initSupabaseAuth();
+    modal.close();
+    showToast(url && key ? "Supabase connected!" : "Using Demo Mode");
+  });
+
+  resetBtn?.addEventListener("click", async () => {
+    localStorage.removeItem("pp_supabase_url");
+    localStorage.removeItem("pp_supabase_key");
+    supabaseConfig.url = "";
+    supabaseConfig.key = "";
+    if (urlInput) urlInput.value = "";
+    if (keyInput) keyInput.value = "";
+    await initSupabaseAuth();
+    modal.close();
+    showToast("Supabase reset to Demo Mode.");
+  });
+}
+
 function checkStartupAuth() {
   const loginScreen = document.querySelector("#loginFullscreenScreen");
   if (loginScreen) {
@@ -436,6 +639,14 @@ function checkStartupAuth() {
       // Ignore parse error
     }
   }
+
+  // Initialize Supabase Auth and Modal
+  initSupabaseAuth();
+  setupSupabaseConfigModal();
+
+  // Wire Tab Buttons
+  document.getElementById("tabSignIn")?.addEventListener("click", () => setAuthMode("signin"));
+  document.getElementById("tabSignUp")?.addEventListener("click", () => setAuthMode("signup"));
 }
 
 function updateUserUI(user) {
@@ -466,27 +677,125 @@ function saveUser(name, email, isGuest = false, isGoogle = false) {
   showToast(`Welcome, ${user.name.split(" ")[0]}! Opening Paisa Panel...`);
 }
 
-// Google Sign-In with dynamic scroll-up
-document.querySelector("#googleLoginBtn")?.addEventListener("click", () => {
+// Google Sign-In (Supabase OAuth with fallback)
+document.querySelector("#googleLoginBtn")?.addEventListener("click", async () => {
   const btn = document.querySelector("#googleLoginBtn");
   const originalHtml = btn ? btn.innerHTML : "";
   if (btn) {
     btn.innerHTML = `<span class="upload-spinner" style="display:inline-block">⏳</span> <span>Connecting with Google...</span>`;
   }
-  setTimeout(() => {
-    saveUser("Google Investor", "investor.google@gmail.com", false, true);
-    if (btn) {
-      btn.innerHTML = originalHtml;
+
+  if (supabaseClient) {
+    try {
+      const { error } = await supabaseClient.auth.signInWithOAuth({
+        provider: "google",
+        options: {
+          redirectTo: window.location.origin
+        }
+      });
+      if (error) throw error;
+    } catch (err) {
+      console.error("Supabase Google OAuth error:", err);
+      showAuthFeedback(err.message || "Google OAuth failed. Continuing in demo mode.", "error");
+      setTimeout(() => {
+        saveUser("Google Investor", "investor.google@gmail.com", false, true);
+        if (btn) btn.innerHTML = originalHtml;
+      }, 600);
     }
-  }, 450);
+  } else {
+    setTimeout(() => {
+      saveUser("Google Investor", "investor.google@gmail.com", false, true);
+      if (btn) btn.innerHTML = originalHtml;
+    }, 450);
+  }
 });
 
-// Pro email form submit
-document.querySelector("#proLoginForm")?.addEventListener("submit", (e) => {
+// Pro form submit (Sign In / Sign Up via Supabase Auth)
+document.querySelector("#proLoginForm")?.addEventListener("submit", async (e) => {
   e.preventDefault();
-  const email = document.querySelector("#proEmailInput")?.value.trim() || "investor@paisapanel.in";
-  const name = email.split("@")[0].replace(/[._]/g, " ").replace(/\b\w/g, l => l.toUpperCase());
-  saveUser(name, email, false);
+  clearAuthFeedback();
+  const email = document.querySelector("#proEmailInput")?.value.trim() || "";
+  const password = document.querySelector("#proPasswordInput")?.value || "";
+  const fullName = document.querySelector("#proNameInput")?.value.trim() || "";
+  const submitBtn = document.querySelector("#proSubmitBtn");
+
+  if (!email || !password) {
+    showAuthFeedback("Please provide both email and password.", "error");
+    return;
+  }
+
+  if (supabaseClient) {
+    const originalBtnHtml = submitBtn ? submitBtn.innerHTML : "";
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `<span>Connecting Supabase...</span>`;
+    }
+
+    try {
+      if (authMode === "signup") {
+        const { data, error } = await supabaseClient.auth.signUp({
+          email,
+          password,
+          options: {
+            data: { full_name: fullName || email.split("@")[0] }
+          }
+        });
+        if (error) throw error;
+        if (data.session && data.user) {
+          showAuthFeedback("Account created! Redirecting...", "success");
+          handleSupabaseUserSession(data.user);
+        } else {
+          showAuthFeedback("Account created! Please check your email to verify your account.", "success");
+        }
+      } else {
+        const { data, error } = await supabaseClient.auth.signInWithPassword({
+          email,
+          password
+        });
+        if (error) throw error;
+        if (data.user) {
+          showAuthFeedback("Signed in successfully! Opening Paisa Panel...", "success");
+          handleSupabaseUserSession(data.user);
+        }
+      }
+    } catch (err) {
+      console.error("Supabase Auth error:", err);
+      showAuthFeedback(err.message || "Authentication failed. Check your credentials.", "error");
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHtml;
+      }
+    }
+  } else {
+    // Demo Mode fallback
+    const name = fullName || email.split("@")[0].replace(/[._]/g, " ").replace(/\b\w/g, l => l.toUpperCase());
+    saveUser(name, email, false);
+  }
+});
+
+// Forgot Password Handler
+document.querySelector("#proForgotLink")?.addEventListener("click", async (e) => {
+  e.preventDefault();
+  const email = document.querySelector("#proEmailInput")?.value.trim();
+  if (!email) {
+    showAuthFeedback("Please enter your email address to receive password reset instructions.", "info");
+    return;
+  }
+
+  if (supabaseClient) {
+    try {
+      const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+        redirectTo: `${window.location.origin}/#reset-password`
+      });
+      if (error) throw error;
+      showAuthFeedback(`Password reset instructions sent to ${email}.`, "success");
+    } catch (err) {
+      showAuthFeedback(err.message || "Failed to send reset email.", "error");
+    }
+  } else {
+    showToast("Demo Mode: Reset simulated. Use demo password 'paisa2026'.");
+  }
 });
 
 // Guest quick login
@@ -497,8 +806,16 @@ document.querySelector("#guestQuickBtn")?.addEventListener("click", () => {
 document.querySelector("#skipForNow")?.addEventListener("click", () => saveUser("Guest Explorer", "guest@paisapanel.in", true));
 document.querySelector("#skipForNowLogin")?.addEventListener("click", () => saveUser("Guest Explorer", "guest@paisapanel.in", true));
 
-els.userAvatar?.addEventListener("click", () => {
+// Sign Out with Supabase session invalidation
+els.userAvatar?.addEventListener("click", async () => {
   if (confirm("Sign out or switch account to return to the Blue Login Page?")) {
+    if (supabaseClient) {
+      try {
+        await supabaseClient.auth.signOut();
+      } catch (err) {
+        console.warn("Supabase signOut notice:", err);
+      }
+    }
     localStorage.removeItem("pp_user");
     els.userAvatar.style.display = "none";
     const loginScreen = document.querySelector("#loginFullscreenScreen");

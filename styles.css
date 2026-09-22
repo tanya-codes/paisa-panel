@@ -5820,3 +5820,280 @@ body, input, button, textarea, select {
   50% { box-shadow: 0 0 0 2px rgba(192, 72, 72, 0.25); }
   100% { box-shadow: none; transform: scale(1); }
 }
+
+/* ─── SUPABASE AUTHENTICATION SYSTEM ─── */
+.supabase-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 999px;
+  padding: 4px 12px;
+  margin-bottom: 14px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #334155;
+  width: fit-content;
+  align-self: center;
+  transition: all 0.2s ease;
+}
+.supabase-status-pill.is-connected {
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+  color: #065f46;
+}
+.supabase-status-pill.is-error {
+  background: #fef2f2;
+  border-color: #fecaca;
+  color: #991b1b;
+}
+.sb-bolt {
+  font-size: 13px;
+  color: #059669;
+}
+.sb-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #94a3b8;
+  display: inline-block;
+  transition: background 0.2s ease;
+}
+.supabase-status-pill.is-connected .sb-status-dot {
+  background: #10b981;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+  animation: pulseDot 2s infinite;
+}
+.supabase-status-pill.is-error .sb-status-dot {
+  background: #ef4444;
+}
+@keyframes pulseDot {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5); }
+  70% { transform: scale(1.05); box-shadow: 0 0 0 5px rgba(16, 185, 129, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+.sb-config-trigger {
+  background: transparent;
+  border: none;
+  font-size: 11px;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+  padding: 0 0 0 4px;
+  margin-left: 2px;
+  border-left: 1px solid #cbd5e1;
+  line-height: 1;
+  transition: color 0.15s ease;
+}
+.sb-config-trigger:hover {
+  color: #0f172a;
+}
+
+/* Auth Mode Tabs */
+.auth-tabs-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: #f1f5f9;
+  border-radius: 12px;
+  padding: 4px;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+.auth-tab-btn {
+  border: none;
+  background: transparent;
+  color: #64748b;
+  font-size: 13.5px;
+  font-weight: 700;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: inherit;
+}
+.auth-tab-btn.is-active {
+  background: #ffffff;
+  color: #0f172a;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+/* Auth Feedback Banner */
+.auth-feedback-banner {
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 12.5px;
+  line-height: 1.45;
+  margin-bottom: 14px;
+  text-align: left;
+  animation: fadeIn 0.2s ease-out;
+}
+.auth-feedback-banner.is-error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+}
+.auth-feedback-banner.is-success {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #166534;
+}
+.auth-feedback-banner.is-info {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1e40af;
+}
+
+/* Supabase Config Dialog */
+.supabase-config-dialog {
+  border: none;
+  padding: 0;
+  background: transparent;
+  max-width: 520px;
+  width: 92vw;
+  margin: auto;
+}
+.supabase-config-dialog::backdrop {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(4px);
+}
+.sb-modal-content {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 26px 28px;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.3);
+  border: 1px solid #e2e8f0;
+}
+.sb-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.sb-modal-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sb-modal-icon {
+  font-size: 1.3rem;
+}
+.sb-modal-header h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+.sb-modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #94a3b8;
+  line-height: 1;
+}
+.sb-modal-close:hover {
+  color: #0f172a;
+}
+.sb-modal-desc {
+  font-size: 13px;
+  color: #64748b;
+  line-height: 1.5;
+  margin: 0 0 18px;
+}
+.sb-input-group {
+  margin-bottom: 14px;
+  text-align: left;
+}
+.sb-input-group label {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #334155;
+  margin-bottom: 5px;
+}
+.sb-input-group input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  font-family: 'JetBrains Mono', monospace, sans-serif;
+  font-size: 12.5px;
+  box-sizing: border-box;
+}
+.sb-input-group input:focus {
+  outline: none;
+  border-color: #059669;
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.15);
+}
+.sb-input-group small {
+  display: block;
+  font-size: 11px;
+  color: #64748b;
+  margin-top: 4px;
+}
+.sb-connection-status-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 12px;
+  color: #475569;
+  margin: 14px 0 18px;
+}
+.sb-conn-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #94a3b8;
+  flex-shrink: 0;
+  transition: background 0.2s ease;
+}
+.sb-conn-dot.is-online {
+  background: #10b981;
+}
+.sb-conn-dot.is-offline {
+  background: #ef4444;
+}
+.sb-modal-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+.sb-action-btn {
+  padding: 9px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+.sb-test-btn {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+  color: #334155;
+}
+.sb-test-btn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+.sb-save-btn {
+  background: #059669;
+  color: #ffffff;
+}
+.sb-save-btn:hover {
+  background: #047857;
+}
+.sb-reset-btn {
+  background: transparent;
+  color: #64748b;
+}
+.sb-reset-btn:hover {
+  color: #c04848;
+}

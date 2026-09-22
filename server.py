@@ -1533,6 +1533,15 @@ async def get_real_investigation_data(symbol: str = "", company: str = "", claim
     return JSONResponse(result)
 
 
+@app.get("/api/auth/config")
+async def get_auth_config():
+    """Return public Supabase configuration if present in environment variables."""
+    return {
+        "supabaseUrl": os.environ.get("SUPABASE_URL", "").strip(),
+        "supabaseAnonKey": os.environ.get("SUPABASE_ANON_KEY", "").strip()
+    }
+
+
 # Static file serving
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 

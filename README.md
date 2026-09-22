@@ -138,6 +138,36 @@ All 9 test cases (A–I) cover:
 
 ---
 
+## ⚡ Supabase Authentication Setup
+
+Paisa Panel includes full integration with **Supabase Auth** supporting Email/Password, Email Confirmation, Password Recovery, Google OAuth, and Session Management, with seamless zero-friction fallback to Demo Mode.
+
+### Quick Setup Options
+
+#### Option 1: In-App UI (Zero Deployment Needed)
+1. Open the app at [https://satyasabha-demo.vercel.app](https://satyasabha-demo.vercel.app) or locally.
+2. On the login card, click **⚙️ Config** on the Supabase badge.
+3. Paste your **Supabase Project URL** and **Anon Public Key**.
+4. Click **Test Connection** → **Save & Connect**.
+
+#### Option 2: Environment Variables (Vercel or Local `.env`)
+Set these environment variables in your Vercel Project Settings or local environment:
+
+```bash
+SUPABASE_URL=https://your-project-id.supabase.co
+SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+```
+
+The backend serves these automatically to the frontend via `/api/auth/config`.
+
+### Features
+- **Sign In & Sign Up**: Switch between Sign In and Account Creation tabs.
+- **Google OAuth**: One-click Google Sign-In powered by Supabase.
+- **Password Reset**: Forgot password flow directly sends password recovery links via Supabase.
+- **Demo Mode**: If unconfigured, the app works out-of-the-box in Demo Mode so you can explore all features immediately.
+
+---
+
 ## 📁 Project Structure
 
 ```

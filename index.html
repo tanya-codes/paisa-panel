@@ -12,6 +12,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
     <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+    <!-- Supabase Authentication Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
@@ -37,7 +39,21 @@
         </div>
 
         <div class="login-card-surface">
-          <!-- Professional Google Sign-In Button -->
+          <!-- Supabase Connection Status Pill -->
+          <div class="supabase-status-pill" id="supabaseStatusBadge">
+            <span class="sb-bolt">⚡</span>
+            <span class="sb-status-dot" id="sbStatusDot"></span>
+            <span class="sb-status-text" id="sbStatusText">Supabase Auth: Initializing...</span>
+            <button type="button" class="sb-config-trigger" id="sbConfigBtn" title="Supabase Settings">⚙️ Config</button>
+          </div>
+
+          <!-- Auth Mode Tabs (Sign In / Create Account) -->
+          <div class="auth-tabs-row" id="authTabsRow" role="tablist">
+            <button type="button" class="auth-tab-btn is-active" id="tabSignIn" role="tab" aria-selected="true">Sign In</button>
+            <button type="button" class="auth-tab-btn" id="tabSignUp" role="tab" aria-selected="false">Create Account</button>
+          </div>
+
+          <!-- Professional Google Sign-In Button (Supabase OAuth) -->
           <button type="button" class="google-signin-pro-btn" id="googleLoginBtn">
             <svg class="google-g-icon" viewBox="0 0 24 24" width="22" height="22">
               <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -45,15 +61,22 @@
               <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
               <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
             </svg>
-            <span class="btn-text">Continue with Google</span>
+            <span class="btn-text" id="googleBtnText">Continue with Google</span>
             <span class="pro-shine"></span>
           </button>
 
           <div class="login-divider-row">
-            <span>or sign in with email</span>
+            <span id="loginDividerText">or sign in with email</span>
           </div>
 
+          <!-- Auth Feedback Banner -->
+          <div class="auth-feedback-banner is-hidden" id="authFeedback" role="alert"></div>
+
           <form class="login-pro-form" id="proLoginForm">
+            <div class="pro-form-group is-hidden" id="proNameGroup">
+              <label for="proNameInput">Full Name</label>
+              <input type="text" id="proNameInput" placeholder="Tanya Sharma" autocomplete="name" />
+            </div>
             <div class="pro-form-group">
               <label for="proEmailInput">Email address</label>
               <input type="email" id="proEmailInput" placeholder="investor@example.com" value="tanya.sharma@investor.in" autocomplete="email" required />
@@ -61,13 +84,13 @@
             <div class="pro-form-group">
               <div class="label-row">
                 <label for="proPasswordInput">Password</label>
-                <a href="#forgot" class="forgot-pwd-link" onclick="event.preventDefault(); showToast('Demo Mode: Click Continue to sign in.');">Forgot?</a>
+                <a href="#forgot" class="forgot-pwd-link" id="proForgotLink">Forgot?</a>
               </div>
               <input type="password" id="proPasswordInput" placeholder="••••••••" value="paisa2026" autocomplete="current-password" required />
             </div>
             <button type="submit" class="login-submit-btn" id="proSubmitBtn">
-              <span>Sign in to <strong class="brand-name-bold" style="color: #ffffff !important;">PAISA PANEL</strong></span>
-              <span class="arrow-icon">↑</span>
+              <span id="loginSubmitBtnText">Sign in to <strong class="brand-name-bold" style="color: #ffffff !important;">PAISA PANEL</strong></span>
+              <span class="arrow-icon" id="loginSubmitArrow">↑</span>
             </button>
           </form>
 
@@ -1025,6 +1048,45 @@
         </div>
       </div>
     </div>
+
+    <!-- ═══════════════════════ SUPABASE CONFIG MODAL ═══════════════════════ -->
+    <dialog class="supabase-config-dialog" id="supabaseConfigModal" aria-labelledby="sbModalTitle">
+      <div class="sb-modal-content">
+        <div class="sb-modal-header">
+          <div class="sb-modal-title-row">
+            <span class="sb-modal-icon">⚡</span>
+            <h3 id="sbModalTitle">Supabase Authentication Settings</h3>
+          </div>
+          <button type="button" class="sb-modal-close" id="sbModalCloseBtn" aria-label="Close settings">&times;</button>
+        </div>
+        <p class="sb-modal-desc">
+          Connect your project to live Supabase Auth. Enter your Supabase Project URL and Anon Public Key below (or configure via <code>SUPABASE_URL</code> and <code>SUPABASE_ANON_KEY</code> in environment variables).
+        </p>
+
+        <div class="sb-input-group">
+          <label for="sbUrlInput">Supabase Project URL</label>
+          <input type="url" id="sbUrlInput" placeholder="https://your-project-id.supabase.co" autocomplete="off" spellcheck="false" />
+          <small>Supabase Dashboard → Project Settings → API → Project URL</small>
+        </div>
+
+        <div class="sb-input-group">
+          <label for="sbKeyInput">Supabase Anon Public Key (client-safe)</label>
+          <input type="password" id="sbKeyInput" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." autocomplete="off" spellcheck="false" />
+          <small>Supabase Dashboard → Project Settings → API → Project API Keys (anon / public)</small>
+        </div>
+
+        <div class="sb-connection-status-box" id="sbConnStatusBox">
+          <span class="sb-conn-dot" id="sbConnDot"></span>
+          <span id="sbConnStatusMsg">Enter credentials or test current connection</span>
+        </div>
+
+        <div class="sb-modal-actions">
+          <button type="button" class="sb-action-btn sb-test-btn" id="sbTestConnBtn">Test Connection</button>
+          <button type="button" class="sb-action-btn sb-save-btn" id="sbSaveConnBtn">Save &amp; Connect</button>
+          <button type="button" class="sb-action-btn sb-reset-btn" id="sbResetConnBtn">Reset to Demo</button>
+        </div>
+      </div>
+    </dialog>
 
     <div class="toast" id="toast" role="status">Verdict copied to clipboard</div>
     <script src="services.js"></script>
